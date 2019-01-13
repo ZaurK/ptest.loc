@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use app\models\SignupForm;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -26,7 +27,7 @@ class UserController extends Controller
                 'only' => ['index', 'create'],
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index', 'create'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -80,10 +81,18 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
+        //$model = new User();
+        $model = new SignupForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                return $this->redirect(['index']);
+                /**
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+                */
+            }
         }
 
         return $this->render('create', [
@@ -102,9 +111,16 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        //$user = new User();
+        //$model->password_hash = $user->setPassword($model->password_hash);
+        //die($model->password_hash);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->setPassword($model->password_hash);
+            if ($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
         }
 
         return $this->render('update', [

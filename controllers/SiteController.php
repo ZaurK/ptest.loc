@@ -142,15 +142,16 @@ class SiteController extends Controller
         return $this->render('about', ['user_name' => $user_name,] );
     }
 
-/**
+
     public function actionAddAdmin() {
     $model = User::find()->where(['username' => 'admin'])->one();
-    if (!empty($model)) {
+    if (empty($model)) {
         $user = new User();
-        $user->username = 'root';
-        $user->email = 'zaurpost1@yandex.ru';
+        $user->username = 'admin';
+        //$user->email = 'zaur@ya.ru';
+        $user->email = Yii::$app->params['adminEmail'];
         $user->setPassword('admin');
-        $user->role = $user::ROLE_USER;
+        $user->role = $user::ROLE_ADMIN;
         $user->generateAuthKey();
         $user->created_at = time();
         $user->updated_at = time();
@@ -161,8 +162,8 @@ class SiteController extends Controller
             die;
             }
       }
-      return $this->render('index');
+      //return $this->render('index');
     }
-*/
+
 
 }

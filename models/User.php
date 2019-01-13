@@ -58,6 +58,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['username', 'auth_key', 'password_hash', 'role', 'created_at', 'updated_at'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['username', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
+            ['password_hash', 'string', 'min' => 4],
             [['auth_key'], 'string', 'max' => 32],
             [['role'], 'integer', 'max' => 64],
             [['password_reset_token'], 'unique'],
@@ -157,7 +158,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'id' => 'ID',
             'username' => 'Username',
             'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
+            'password_hash' => 'Password',
             'password_reset_token' => 'Password Reset Token',
             'role' => 'Role',
             'status' => 'Status',
@@ -171,6 +172,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      *
      * @return User|null the saved model or null if saving fails
      */
+/**
     public function signup()
     {
 
@@ -184,7 +186,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $user->generateAuthKey();
         return $user->save() ? $user : null;
     }
-
+*/
 
     public static function isUserAdmin($username)
     {
@@ -199,7 +201,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
     }
 
-      public static function isUserUser($username)
+     public static function isUserUser($username)
     {
         if (
             static::findOne(['username' => $username, 'role' => self::ROLE_USER])
