@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -20,12 +21,25 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'signup', 'about'],
                 'rules' => [
+                    [
+                        'actions' => ['signup'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
                     [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['about'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserAdmin(Yii::$app->user->identity->username);
+                        },
                     ],
                 ],
             ],
@@ -77,7 +91,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if ($model->load(Yii::$app->request->post()) && ($model->loginAdmin() || $model->login())) {
             return $this->goBack();
         }
 
@@ -124,6 +138,31 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $user_name  = Yii::$app->user->identity->username;
+        return $this->render('about', ['user_name' => $user_name,] );
     }
+
+/**
+    public function actionAddAdmin() {
+    $model = User::find()->where(['username' => 'admin'])->one();
+    if (!empty($model)) {
+        $user = new User();
+        $user->username = 'root';
+        $user->email = 'zaurpost1@yandex.ru';
+        $user->setPassword('admin');
+        $user->role = $user::ROLE_USER;
+        $user->generateAuthKey();
+        $user->created_at = time();
+        $user->updated_at = time();
+        if ($user->save()) {
+            echo 'good';
+        }else{
+            var_dump($user->getFirstErrors());
+            die;
+            }
+      }
+      return $this->render('index');
+    }
+*/
+
 }
