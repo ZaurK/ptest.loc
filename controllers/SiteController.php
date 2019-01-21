@@ -68,6 +68,8 @@ class SiteController extends Controller
         ];
     }
 
+
+
     /**
      * Displays homepage.
      *
@@ -92,7 +94,12 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && ($model->loginAdmin() || $model->login())) {
-            return $this->goBack();
+            //return $this->goBack();
+            if ((Yii::$app->user->getIdentity())['role'] == '20') {
+                    return $this->redirect(['user/index']);
+                } else {
+                    return $this->redirect(['site/contact']);
+                }
         }
 
         $model->password = '';

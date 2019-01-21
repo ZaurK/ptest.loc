@@ -54,6 +54,9 @@ class OrderController extends Controller
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+
+        //$model->order_data = unserialize($model->order_data);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -118,7 +121,7 @@ class OrderController extends Controller
                 }
 
         }
-         
+
     $model->order_data = unserialize($model->order_data);
 
         return $this->render('update', [

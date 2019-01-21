@@ -25,7 +25,11 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+  <?php
+    $identity = Yii::$app->user->getIdentity();
+    //echo "<pre>";
+    //print_r($identity['id']);
+    ?>
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -35,31 +39,36 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+
+    $menuItems = [
+                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'Contact', 'url' => ['/site/contact']],
+            ];
+
+
+    if ((Yii::$app->user->getIdentity())['role'] == '20') {
+                $menuItems[] = ['label' => 'About', 'url' => ['/site/about']];
+                $menuItems[] = ['label' => 'Quiz', 'url' => ['/quiz/index']];
+                $menuItems[] = ['label' => 'Users', 'url' => ['/user/index']];
+                $menuItems[] = ['label' => 'Order', 'url' => ['/order/index']];
+            }
+    if (Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+            } else {
+                $menuItems[] = [
+                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'url' => ['/site/logout'],
+                    'linkOptions' => ['data-method' => 'post']
+                ];
+            }
+
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Quiz', 'url' => ['/quiz/index']],
-            ['label' => 'Order', 'url' => ['/order/index']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Users', 'url' => ['/user/index']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'items' => $menuItems,
+                    ]);
     NavBar::end();
     ?>
+
 
     <div class="container">
         <?= Breadcrumbs::widget([
