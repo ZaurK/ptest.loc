@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'quiztitle')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'quiz_data')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'quiz_data')->textarea(['rows' => '6']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

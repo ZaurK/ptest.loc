@@ -155,6 +155,7 @@ class SiteController extends Controller
     if (empty($model)) {
         $user = new User();
         $user->username = 'admin';
+        $user->fio = 'admin';
         //$user->email = 'zaur@ya.ru';
         $user->email = Yii::$app->params['adminEmail'];
         $user->setPassword('admin');

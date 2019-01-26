@@ -15,7 +15,7 @@ class m190113_161225_create_quiz_table extends Migration
         $this->createTable('quiz', [
             'id' => $this->primaryKey(),
             'quiztitle' => $this->string()->notNull()->unique(),
-            'quiz_data' => $this->string()->notNull(),
+            'quiz_data' => $this->text()->notNull(),
 
 
         ]);
