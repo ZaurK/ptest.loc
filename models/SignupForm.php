@@ -12,6 +12,7 @@ class SignupForm extends Model
 {
 
     public $username;
+    public $fio;
     public $email;
     public $password_hash;
 
@@ -21,10 +22,11 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
+            [['username', 'fio'], 'trim'],
+            [['username', 'fio'], 'required'],
             ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
+            ['fio', 'string', 'min' => 1, 'max' =>255],
             //['email', 'trim'],
             //['email', 'required'],
             //['email', 'email'],
@@ -40,6 +42,7 @@ class SignupForm extends Model
         return [
             'id' => 'ID',
             'username' => 'Username',
+            'fio' => 'FIO',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password',
             'password_reset_token' => 'Password Reset Token',
@@ -64,6 +67,7 @@ class SignupForm extends Model
 
         $user = new User();
         $user->username = $this->username;
+        $user->fio = $this->fio;
         //$user->email = $this->email;
         $user->setPassword($this->password_hash);
         $user->email = Yii::$app->params['adminEmail'];

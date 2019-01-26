@@ -51,8 +51,8 @@ class Order extends \yii\db\ActiveRecord
 
     public function getUserDropdown()
     {
-        $listUser  = User::find()->select('id, username')->where(['role' => '10'])->all();
-        $list = ArrayHelper::map( $listUser,'id','username');
+        $listUser  = User::find()->select('id, fio')->where(['role' => '10'])->all();
+        $list = ArrayHelper::map( $listUser,'id','fio');
 
         return $list;
     }

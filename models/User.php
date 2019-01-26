@@ -55,9 +55,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'role', 'created_at', 'updated_at'], 'required'],
+            [['username', 'fio', 'auth_key', 'password_hash', 'role', 'created_at', 'updated_at'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
+            [['username', 'fio', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
             ['password_hash', 'string', 'min' => 4],
             [['auth_key'], 'string', 'max' => 32],
             [['role'], 'integer', 'max' => 64],
@@ -157,6 +157,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             'id' => 'ID',
             'username' => 'Username',
+            'fio' => 'FIO',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password',
             'password_reset_token' => 'Password Reset Token',

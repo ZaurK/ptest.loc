@@ -89,7 +89,8 @@ class OrderController extends Controller
 
             $model->order_data = serialize($model->order_data);
             if ($model->save()) {
-                echo 'good';
+                //echo '<pre>'; var_dump(Yii::$app->request->post());
+                //die();
                 }else{
                     var_dump($model->getFirstErrors());
                     die;
