@@ -21,7 +21,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup', 'about'],
+                'only' => ['logout', 'signup', 'about', 'account'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -35,6 +35,14 @@ class SiteController extends Controller
                     ],
                     [
                         'actions' => ['about'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserAdmin(Yii::$app->user->identity->username);
+                        },
+                    ],
+                    [
+                        'actions' => ['account'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -98,7 +106,7 @@ class SiteController extends Controller
             if ((Yii::$app->user->getIdentity())['role'] == '20') {
                     return $this->redirect(['user/index']);
                 } else {
-                    return $this->redirect(['site/contact']);
+                    return $this->redirect(['account/index']);
                 }
         }
 
