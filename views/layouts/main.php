@@ -42,19 +42,23 @@ AppAsset::register($this);
 
     $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
+//                ['label' => 'Contact', 'url' => ['/site/contact']],
             ];
 
 
     if ((Yii::$app->user->getIdentity())['role'] == '20') {
-                $menuItems[] = ['label' => 'About', 'url' => ['/site/about']];
+//                $menuItems[] = ['label' => 'About', 'url' => ['/site/about']];
                 $menuItems[] = ['label' => 'Quiz', 'url' => ['/quiz/index']];
                 $menuItems[] = ['label' => 'Users', 'url' => ['/user/index']];
                 $menuItems[] = ['label' => 'Order', 'url' => ['/order/index']];
                  $menuItems[] = ['label' => 'Account', 'url' => ['/account/index']];
             }
     else if ((Yii::$app->user->getIdentity())['role'] == '10') {
-                $menuItems[] = ['label' => 'Account', 'url' => ['/account/index']];
+//                 $menuItems[] = ['label' => 'About', 'url' => ['/site/about']];
+                $menuItems[] = ['label' => 'Quiz', 'url' => ['/quiz/index']];
+                $menuItems[] = ['label' => 'Users', 'url' => ['/user/index']];
+                $menuItems[] = ['label' => 'Order', 'url' => ['/order/index']];
+                 $menuItems[] = ['label' => 'Account', 'url' => ['/account/index']];
             }
 
     if (Yii::$app->user->isGuest) {

@@ -15,14 +15,7 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
     <h3>Задание:</h3><hr>
 
     <p>
-    <ul>
-        <?php
-            foreach ($orders as $order){
-                echo '<li>' .$order. '</li>';
-            }
 
-        ?>
-    </ul>
     </p>
 
 </div>

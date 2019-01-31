@@ -24,15 +24,33 @@ class OrderController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'create'],
+                'only' => ['logout', 'signup', 'about', 'account'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'create'],
+                        'actions' => ['signup'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['about'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
                             return User::isUserAdmin(Yii::$app->user->identity->username);
-                         },
+                        },
+                    ],
+                    [
+                        'actions' => ['account'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserAdmin(Yii::$app->user->identity->username);
+                        },
                     ],
                 ],
             ],
