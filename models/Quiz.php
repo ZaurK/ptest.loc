@@ -28,7 +28,7 @@ class Quiz extends \yii\db\ActiveRecord
     {
         return [
             [['quiztitle', 'quiz_data'], 'required'],
-            [['quiztitle', 'quiz_data'], 'string', 'max' => 255],
+            [['quiztitle', 'quiz_data'], 'string'],
             [['quiztitle'], 'unique'],
         ];
     }
