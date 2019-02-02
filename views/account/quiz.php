@@ -10,12 +10,15 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
 
 
 <div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($quiz_model['quiztitle']) ?></h1>
 
-    <h3>Задание:</h3><hr>
+    <h3>Задание:</h3>
 
-    <p>
+    <?php
 
-    </p>
+    echo $quiz_model['quiz_data'];
+    ?>
+
+
 
 </div>

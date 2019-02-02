@@ -41,9 +41,9 @@ class Service extends \yii\db\ActiveRecord
             $order = unserialize($ordr['order_data']);
             foreach ($order as $key){
                 if(Yii::$app->user->identity->id == $key){
-                    $my_quiz_titles[] = '<a href="'
-                                . Url::toRoute(['account/quiz', 'id' => $ordr['id']]) .
-                    '">'.$this->getQuizTitlesById($ordr['order_quiz']). '</a>';
+                    $my_quiz_titles[] = $this->getQuizTitlesById($ordr['order_quiz'])
+                                       .'<a href="'. Url::toRoute(['account/quiz', 'id' => $ordr['id']])
+                                       .'">    Начать тестирование</a>';
 
                 }
             }

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Service;
+use app\models\Quiz;
 
 
 class AccountController extends \yii\web\Controller
@@ -24,9 +25,13 @@ class AccountController extends \yii\web\Controller
     }
 
 
-    public function actionQuiz()
+    public function actionQuiz($id)
     {
-        return $this->render('quiz');
+        $quiz_model = Quiz::find()
+                            ->where(['id' => $id])
+                            ->one();
+
+        return $this->render('quiz', ['quiz_model' => $quiz_model]);
 
     }
 
