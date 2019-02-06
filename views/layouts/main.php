@@ -47,7 +47,7 @@ AppAsset::register($this);
 
 
     if ((Yii::$app->user->getIdentity())['role'] == '20') {
-//                $menuItems[] = ['label' => 'About', 'url' => ['/site/about']];
+                $menuItems[] = ['label' => 'Test', 'url' => ['/site/test']];
                 $menuItems[] = ['label' => 'Quiz', 'url' => ['/quiz/index']];
                 $menuItems[] = ['label' => 'Users', 'url' => ['/user/index']];
                 $menuItems[] = ['label' => 'Order', 'url' => ['/order/index']];
@@ -55,7 +55,7 @@ AppAsset::register($this);
                  $menuItems[] = ['label' => 'Account', 'url' => ['/account/index']];
             }
     else if ((Yii::$app->user->getIdentity())['role'] == '10') {
-//                 $menuItems[] = ['label' => 'About', 'url' => ['/site/about']];
+                 $menuItems[] = ['label' => 'Test', 'url' => ['/site/test']];
                 $menuItems[] = ['label' => 'Quiz', 'url' => ['/quiz/index']];
                 $menuItems[] = ['label' => 'Users', 'url' => ['/user/index']];
                 $menuItems[] = ['label' => 'Order', 'url' => ['/order/index']];

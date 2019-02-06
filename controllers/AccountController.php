@@ -31,8 +31,38 @@ class AccountController extends \yii\web\Controller
                             ->where(['id' => $id])
                             ->one();
 
-        return $this->render('quiz', ['quiz_model' => $quiz_model]);
+        $quiz_title = $quiz_model['quiztitle'];
+        $quiz_data = $quiz_model['quiz_data'];
+        $id_user = Yii::$app->user->identity->id;
+        $id_quiz = $quiz_model['id'];
 
+        return $this->render('quiz', ['quiz_data' => $quiz_data, 'quiz_title' => $quiz_title, 'id_quiz' => $id_quiz, 'id_user' => $id_user]);
+
+    }
+
+
+
+    public function actionTest(){
+
+        if (Yii::$app->request->isAjax) {
+        $data = Yii::$app->request->post();
+        $result = explode(":", $data['result']);
+        $id_quiz = explode(":", $data['id_quiz']);
+        $id_user = explode(":", $data['id_user']);
+        $result = $result[0];
+        $id_quiz = $id_quiz[0];
+        $id_user = $id_user[0];
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+         return [
+            'result' => $result,
+            'id_quiz' => $id_quiz,
+            'id_user' => $id_user,
+
+            ];
+        }
+
+
+         return $this->render('quiz');
     }
 
 

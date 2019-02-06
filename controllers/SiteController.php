@@ -146,6 +146,31 @@ class SiteController extends Controller
         ]);
     }
 
+
+
+
+
+    public function actionTest()
+    {
+        if (Yii::$app->request->isAjax) {
+        $data = Yii::$app->request->post();
+        $name = explode(":", $data['name']);
+        $sername = explode(":", $data['sername']);
+        $name = $name[0];
+        $sername = $sername[0];
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+         return [
+            'name' => $name,
+            'sername' => $sername,
+
+            ];
+        }
+        return $this->render('test');
+    }
+
+
+
+
     /**
      * Displays about page.
      *

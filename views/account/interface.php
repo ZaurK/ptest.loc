@@ -17,12 +17,10 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
     <p>
     <ul>
         <?php
-            foreach ($orders as $order){
-                echo '<li>' .$order. '</li>';
-            }
+           //var_dump($_POST);
+           echo $model;
 
         ?>
-
     </ul>
     </p>
 

@@ -2,6 +2,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'Account';
 $this->params['breadcrumbs'][] = $this->title ;
@@ -10,13 +11,14 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
 
 
 <div class="site-about">
-    <h3><?= Html::encode($quiz_model['quiztitle']) ?></h3>
+    <h3><?= Html::encode($quiz_title) ?></h3>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <div class="quiz-container">
   <div id="quiz"></div>
 </div>
-<button id="previous">Предыдущий</button>
 <button id="next">Следующий</button>
 <button id="submit">Смотреть результат</button>
 <h3><span id="results"></span></h3>
@@ -24,10 +26,11 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
 
 </div>
 <?php
- $quiz_json = $quiz_model['quiz_data'];
+ $quiz_json = $quiz_data;
   ?>
 
 <script>
+
 (function() {
 
 
@@ -93,10 +96,15 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
         // color the answers red
         answerContainers[questionNumber].style.color = "red";
       }
+
+
     });
+    result_answr = `${numCorrect} из ${myQuestions.length}`;
+    request(result_answr);
 
     // show number of correct answers out of total
     resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+
   }
 
   function showSlide(n) {
@@ -104,11 +112,6 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
     slides[n].classList.add("active-slide");
     currentSlide = n;
 
-    if (currentSlide === 0) {
-      previousButton.style.display = "none";
-    } else {
-      previousButton.style.display = "inline-block";
-    }
 
     if (currentSlide === slides.length - 1) {
       nextButton.style.display = "none";
@@ -123,9 +126,6 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
     showSlide(currentSlide + 1);
   }
 
-  function showPreviousSlide() {
-    showSlide(currentSlide - 1);
-  }
 
   const quizContainer = document.getElementById("quiz");
   const resultsContainer = document.getElementById("results");
@@ -134,7 +134,6 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
   // display quiz right away
   buildQuiz();
 
-  const previousButton = document.getElementById("previous");
   const nextButton = document.getElementById("next");
   const slides = document.querySelectorAll(".slide");
   let currentSlide = 0;
@@ -142,8 +141,28 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
   showSlide(0);
 
   // on submit, show results
+
+
+
   submitButton.addEventListener("click", showResults);
-  previousButton.addEventListener("click", showPreviousSlide);
   nextButton.addEventListener("click", showNextSlide);
 })();
+
+function request(result_answr){
+    $.ajax({
+    url: '<?php echo Yii::$app->request->baseUrl. '/account/test' ?>',
+    type: 'post',
+    data: {
+             result: result_answr ,
+             id_quiz: <?=$id_quiz ?> ,
+             id_user: <?=$id_user?> ,
+             _csrf : '<?=Yii::$app->request->getCsrfToken()?>'
+          },
+    success: function (data) {
+          console.log(data);
+    }
+    });
+
+}
+
 </script>
