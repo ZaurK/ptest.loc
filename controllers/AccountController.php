@@ -16,12 +16,11 @@ class AccountController extends \yii\web\Controller
              }else{
                  $this->redirect(['site/login']);
              }
-        $sess = Yii::$app->user;
 
         $service = new Service();
         $my_order = $service->getMyOrders();
 
-        return $this->render('index', ['user_name' => $user_name, 'orders' => $my_order, 'sess' => $sess] );
+        return $this->render('index', ['user_name' => $user_name, 'orders' => $my_order] );
     }
 
 
@@ -53,16 +52,15 @@ class AccountController extends \yii\web\Controller
         $id_quiz = $id_quiz[0];
         $id_user = $id_user[0];
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $service = new Service();
+        $service->saveResult($result, $id_quiz, $id_user);
          return [
             'result' => $result,
             'id_quiz' => $id_quiz,
             'id_user' => $id_user,
-
             ];
         }
 
-
-         return $this->render('quiz');
     }
 
 
