@@ -19,12 +19,12 @@ class Service extends \yii\db\ActiveRecord
     * Return a quiz title by order_quiz.
     *
     */
-    public function getQuizTitlesById($order_quiz)
+    public function getQuizTitleById($order_quiz)
     {
         $my_quiz = Quiz::find()
                          -> where(['id' => $order_quiz])
                          -> one();
-        return $my_quiz['quiztitle'];
+        return $my_quiz->quiztitle;
     }
 
     /**
@@ -43,10 +43,11 @@ class Service extends \yii\db\ActiveRecord
             foreach ($order as $key){
                 if(Yii::$app->user->identity->id == $key){
                   if($this->checkQuiz($ordr['order_quiz']) == True){
-                    $my_quiz_titles[] = $this->getQuizTitlesById($ordr['order_quiz']);
+                    $my_quiz_titles[] = $this->getQuizTitleById($ordr['order_quiz'])
+                                           .'<span class="test_finished">    Тест пройден</span>';
 
                       }else{
-                        $my_quiz_titles[] = $this->getQuizTitlesById($ordr['order_quiz'])
+                        $my_quiz_titles[] = $this->getQuizTitleById($ordr['order_quiz'])
                                            .'<a href="'. Url::toRoute(['account/quiz', 'id' => $ordr['id']])
                                            .'">    Начать тестирование</a>';
                       }

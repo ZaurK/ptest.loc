@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Service;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ResultSearch */
@@ -9,6 +10,7 @@ use yii\grid\GridView;
 
 $this->title = 'Results';
 $this->params['breadcrumbs'][] = $this->title;
+$service = new Service();
 ?>
 <div class="result-index">
 
@@ -25,12 +27,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'id_user',
-            'id_quiz',
+            //'id',
+            [
+              //'header'=>'Ф.И.О.',
+              'attribute' => 'id_user',
+              'value' => 'user.fio',
+            ],
+
+            'quiz.quiztitle',
             'result:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+
+            [
+            'class' => 'yii\grid\ActionColumn',
+            'header'=>'Действия',
+            'headerOptions' => ['width' => '80'],
+            'template' => '{view} {delete}{link}',
+            ],
         ],
     ]); ?>
 </div>

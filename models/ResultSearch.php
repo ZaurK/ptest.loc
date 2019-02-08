@@ -17,8 +17,8 @@ class ResultSearch extends Result
     public function rules()
     {
         return [
-            [['id', 'id_user', 'id_quiz'], 'integer'],
-            [['result'], 'safe'],
+            [['id',  'id_quiz'], 'integer'],
+            [['result', 'id_user'], 'safe'],
         ];
     }
 

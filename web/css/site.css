@@ -172,4 +172,6 @@ button:hover{
   height: 200px;
   margin-top: 40px;
 }
-
+.test_finished{
+  color:green;
+}

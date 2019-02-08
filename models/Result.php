@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Quiz;
 
 /**
  * This is the model class for table "result".
@@ -45,5 +46,16 @@ class Result extends \yii\db\ActiveRecord
             'id_quiz' => 'Id Quiz',
             'result' => 'Result',
         ];
+    }
+
+
+    public function getQuiz()
+    {
+        return $this->hasOne(Quiz::class,['id' => 'id_quiz']);
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::class,['id' => 'id_user']);
     }
 }
