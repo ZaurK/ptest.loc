@@ -49,7 +49,7 @@ class Service extends \yii\db\ActiveRecord
 
                       }else{
                         $my_quiz_titles[] = $this->getQuizTitleById($ordr['order_quiz'])
-                                           .'<a href="'. Url::toRoute(['account/quiz', 'id' => $ordr['id']])
+                                           .'<a href="'. Url::toRoute(['account/quiz', 'id' => $ordr['order_quiz']])
                                            .'">    Начать тестирование</a>';
                       }
 

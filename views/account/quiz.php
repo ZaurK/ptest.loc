@@ -10,13 +10,14 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
 ?>
 
 
-<div class="site-about">
+<div class="site-about text-center">
     <h3><?= Html::encode($quiz_title) ?></h3>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<div class="quiz-container">
+
+<div class="quiz-container ">
   <div id="quiz"></div>
 </div>
 <button id="next">Следующий</button>
@@ -26,6 +27,7 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
 
 </div>
 <?php
+print_r($quiz_data);
  $quiz_json = $quiz_data;
   ?>
 
@@ -37,17 +39,12 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
   const myQuestions = <?php echo $quiz_json; ?>;
 
   function buildQuiz() {
-    // we'll need a place to store the HTML output
     const output = [];
 
-    // for each question...
     myQuestions.forEach((currentQuestion, questionNumber) => {
-      // we'll want to store the list of answer choices
       const answers = [];
 
-      // and for each available answer...
       for (letter in currentQuestion.answers) {
-        // ...add an HTML radio button
         answers.push(
           `<label>
              <input type="radio" name="question${questionNumber}" value="${letter}">
@@ -57,7 +54,7 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
         );
       }
 
-      // add this question and its answers to the output
+
       output.push(
         `<div class="slide">
            <div class="question"> ${currentQuestion.question} </div>
@@ -66,44 +63,35 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
       );
     });
 
-    // finally combine our output list into one string of HTML and put it on the page
     quizContainer.innerHTML = output.join("");
   }
 
   function showResults() {
-    // gather answer containers from our quiz
     const answerContainers = quizContainer.querySelectorAll(".answers");
 
-    // keep track of user's answers
     let numCorrect = 0;
 
-    // for each question...
     myQuestions.forEach((currentQuestion, questionNumber) => {
-      // find selected answer
       const answerContainer = answerContainers[questionNumber];
       const selector = `input[name=question${questionNumber}]:checked`;
       const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
-      // if answer is correct
       if (userAnswer === currentQuestion.correctAnswer) {
-        // add to the number of correct answers
         numCorrect++;
 
-        // color the answers green
-        answerContainers[questionNumber].style.color = "lightgreen";
-      } else {
-        // if answer is wrong or blank
-        // color the answers red
-        answerContainers[questionNumber].style.color = "red";
+
       }
 
 
     });
+      document.querySelector('#submit').style.display ='none';
+      document.querySelector('.quiz-container').remove();
+
+
     result_answr = `${numCorrect} из ${myQuestions.length}`;
     request(result_answr);
 
-    // show number of correct answers out of total
-    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+    resultsContainer.innerHTML = `Ваш результат:<br><h1>${numCorrect} верных ответов из ${myQuestions.length}</h1>`;
 
   }
 
@@ -131,7 +119,6 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
   const resultsContainer = document.getElementById("results");
   const submitButton = document.getElementById("submit");
 
-  // display quiz right away
   buildQuiz();
 
   const nextButton = document.getElementById("next");
@@ -139,9 +126,6 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
   let currentSlide = 0;
 
   showSlide(0);
-
-  // on submit, show results
-
 
 
   submitButton.addEventListener("click", showResults);
