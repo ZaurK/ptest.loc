@@ -12,6 +12,11 @@ body {
 
 .wrap > .container {
     padding: 70px 15px 20px;
+    width: 100%;
+}
+.wrap > nav > .container {
+
+    width: 100%;
 }
 
 .footer {

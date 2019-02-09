@@ -41,33 +41,31 @@ AppAsset::register($this);
     ]);
 
     $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'Главная', 'url' => ['/site/index']],
 //                ['label' => 'Contact', 'url' => ['/site/contact']],
             ];
 
 
     if ((Yii::$app->user->getIdentity())['role'] == '20') {
-                $menuItems[] = ['label' => 'Test', 'url' => ['/site/test']];
-                $menuItems[] = ['label' => 'Quiz', 'url' => ['/quiz/index']];
-                $menuItems[] = ['label' => 'Users', 'url' => ['/user/index']];
-                $menuItems[] = ['label' => 'Order', 'url' => ['/order/index']];
-                $menuItems[] = ['label' => 'Result', 'url' => ['/result/index']];
-                 $menuItems[] = ['label' => 'Account', 'url' => ['/account/index']];
+                $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
+                $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
+                $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
+                $menuItems[] = ['label' => 'Результаты', 'url' => ['/result/index']];
+                $menuItems[] = ['label' => 'Аккаунт', 'url' => ['/account/index']];
             }
     else if ((Yii::$app->user->getIdentity())['role'] == '10') {
-                 $menuItems[] = ['label' => 'Test', 'url' => ['/site/test']];
-                $menuItems[] = ['label' => 'Quiz', 'url' => ['/quiz/index']];
-                $menuItems[] = ['label' => 'Users', 'url' => ['/user/index']];
-                $menuItems[] = ['label' => 'Order', 'url' => ['/order/index']];
-                $menuItems[] = ['label' => 'Result', 'url' => ['/result/index']];
-                 $menuItems[] = ['label' => 'Account', 'url' => ['/account/index']];
+                $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
+                $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
+                $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
+                $menuItems[] = ['label' => 'Результаты', 'url' => ['/result/index']];
+                $menuItems[] = ['label' => 'Аккаунт', 'url' => ['/account/index']];
             }
 
     if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+                $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' => 'Выход (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];

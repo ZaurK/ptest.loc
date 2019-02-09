@@ -113,7 +113,7 @@ class OrderController extends Controller
                     var_dump($model->getFirstErrors());
                     die;
                     }
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -135,8 +135,9 @@ class OrderController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 
          $model->order_data = serialize($model->order_data);
+         // $this->checkDatas($model->order_data);
          if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['update', 'id' => $model->id]);
                 }
 
         }
@@ -147,6 +148,18 @@ class OrderController extends Controller
             'model' => $model,
         ]);
     }
+
+
+    // /**
+    //  * Checking updated users list for order.
+    //  */
+    //  public function checkDatas($data) {
+    //
+    //    print_r(unserialize($data));
+    //    die();
+    //  }
+
+
 
     /**
      * Deletes an existing Order model.

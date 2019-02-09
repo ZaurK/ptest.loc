@@ -15,6 +15,7 @@ use app\models\Result;
  */
 class Service extends \yii\db\ActiveRecord
 {
+
     /**
     * Return a quiz title by order_quiz.
     *
