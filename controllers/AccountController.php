@@ -3,12 +3,55 @@
 namespace app\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use app\models\User;
 use app\models\Service;
 use app\models\Quiz;
+use app\models\Result;
 
 
 class AccountController extends \yii\web\Controller
 {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function behaviors()
+  {
+      return [
+          'access' => [
+              'class' => AccessControl::className(),
+              'only' => ['index', 'quiz'],
+              'rules' => [
+                  [
+                      'actions' => ['index'],
+                      'allow' => true,
+                      'roles' => ['@'],
+                      'matchCallback' => function ($rule, $action) {
+                          return User::isUserUser(Yii::$app->user->identity->username);
+                      },
+                  ],
+                  [
+                      'actions' => ['quiz'],
+                      'allow' => true,
+                      'roles' => ['@'],
+                      'matchCallback' => function ($rule, $action) {
+                          return User::isUserUser(Yii::$app->user->identity->username);
+                      },
+                  ],
+              ],
+          ],
+          'verbs' => [
+              'class' => VerbFilter::className(),
+              'actions' => [
+                  'logout' => ['post'],
+              ],
+          ],
+      ];
+  }
+
+
     public function actionIndex()
     {
         if (Yii::$app->user->identity->username){

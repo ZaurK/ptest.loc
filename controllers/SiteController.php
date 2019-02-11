@@ -85,7 +85,26 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+      $this->layout = 'login';
+
+      if (!Yii::$app->user->isGuest) {
+          return $this->goHome();
+      }
+
+      $model = new LoginForm();
+      if ($model->load(Yii::$app->request->post()) && ($model->loginAdmin() || $model->login())) {
+          //return $this->goBack();
+          if ((Yii::$app->user->getIdentity())['role'] == '20') {
+                  return $this->redirect(['user/index']);
+              } else {
+                  return $this->redirect(['account/index']);
+              }
+      }
+
+      $model->password = '';
+      return $this->render('login', [
+          'model' => $model,
+      ]);
     }
 
 
@@ -96,6 +115,8 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'login';
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

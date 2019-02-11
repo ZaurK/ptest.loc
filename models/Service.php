@@ -43,14 +43,14 @@ class Service extends \yii\db\ActiveRecord
             $order = unserialize($ordr['order_data']);
             foreach ($order as $key){
                 if(Yii::$app->user->identity->id == $key){
-                  if($this->checkQuiz($ordr['order_quiz']) == True){
-                    $my_quiz_titles[] = $this->getQuizTitleById($ordr['order_quiz'])
-                                           .'<span class="test_finished">    Тест пройден</span>';
+                  if($this->checkQuiz($ordr['order_quiz'])){
+                    $my_quiz_titles[] = "<td>".$this->getQuizTitleById($ordr['order_quiz'])."</td>"
+                                           .'<td><span class="test_finished">    Тест пройден (верно '.$this->checkQuiz($ordr['order_quiz']).')</span></td>';
 
                       }else{
-                        $my_quiz_titles[] = $this->getQuizTitleById($ordr['order_quiz'])
-                                           .'<a href="'. Url::toRoute(['account/quiz', 'id' => $ordr['order_quiz']])
-                                           .'">    Начать тестирование</a>';
+                        $my_quiz_titles[] = "<td>".$this->getQuizTitleById($ordr['order_quiz'])."</td>"
+                                           .'<td><a href="'. Url::toRoute(['account/quiz', 'id' => $ordr['order_quiz']])
+                                           .'">    Начать тестирование</a></td>';
                       }
 
                 }
@@ -69,7 +69,7 @@ class Service extends \yii\db\ActiveRecord
       $id_user = Yii::$app->user->identity->id;
       $res = Result::find()->where(['id_user'=>$id_user, 'id_quiz'=>$id_quiz])->one();
       if($res){
-        return True;
+        return $res->result;
       }
 
 
@@ -89,6 +89,7 @@ class Service extends \yii\db\ActiveRecord
         $res->save();
 
     }
+
 
 
 

@@ -41,7 +41,7 @@ AppAsset::register($this);
     ]);
 
     $menuItems = [
-                ['label' => 'Главная', 'url' => ['/site/index']],
+                //['label' => 'Главная', 'url' => ['/site/index']],
 //                ['label' => 'Contact', 'url' => ['/site/contact']],
             ];
 
@@ -51,13 +51,13 @@ AppAsset::register($this);
                 $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
                 $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
                 $menuItems[] = ['label' => 'Результаты', 'url' => ['/result/index']];
-                $menuItems[] = ['label' => 'Аккаунт', 'url' => ['/account/index']];
+                // $menuItems[] = ['label' => 'Аккаунт', 'url' => ['/account/index']];
             }
     else if ((Yii::$app->user->getIdentity())['role'] == '10') {
-                $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
-                $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
-                $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
-                $menuItems[] = ['label' => 'Результаты', 'url' => ['/result/index']];
+                // $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
+                // $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
+                // $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
+                // $menuItems[] = ['label' => 'Результаты', 'url' => ['/result/index']];
                 $menuItems[] = ['label' => 'Аккаунт', 'url' => ['/account/index']];
             }
 
@@ -86,16 +86,15 @@ AppAsset::register($this);
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
-</div>
 
+</div>
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?= date('Y') ?> КАБАРДИНО-БАЛКАРСКАЯ ПРОТИВОПОЖАРНО-СПАСАТЕЛЬНАЯ СЛУЖБА</p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right"><a href="http://kbfrs.ru" target="_blank">Основной сайт службы</a></p>
     </div>
 </footer>
-
 <?php $this->endBody() ?>
 </body>
 </html>

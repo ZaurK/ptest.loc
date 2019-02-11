@@ -26,10 +26,7 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
 
 
 </div>
-<?php
-print_r($quiz_data);
- $quiz_json = $quiz_data;
-  ?>
+<?php $quiz_json = $quiz_data;  ?>
 
 <script>
 

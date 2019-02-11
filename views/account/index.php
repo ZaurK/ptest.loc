@@ -12,18 +12,24 @@ $this->params['breadcrumbs'][] = Yii::$app->user->identity->fio ;
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <h3>Задание:</h3><hr>
+    <h3>Мои тесты:</h3>
 
-    <p>
-    <ul>
-        <?php
-            foreach ($orders as $order){
-                echo '<li>' .$order. '</li>';
-            }
 
-        ?>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+          <tr>
+            <th>Тестовое задание</th>
+            <th>Статус</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+              foreach ($orders as $order){
+                  echo '<tr>' .$order. '</tr>';
+              }
 
-    </ul>
-    </p>
+          ?>
+        </tbody>
+      </table>
 
 </div>
