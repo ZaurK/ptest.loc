@@ -26,25 +26,37 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?php $this->registerJsFile('/js/parallax.js', ['depends' => [\yii\web\JqueryAsset::className()]]); ?>
   <?php
     $identity = Yii::$app->user->getIdentity();
     //echo "<pre>";
     //print_r($identity['id']);
     ?>
-<div class="wrap">
+    <div class="jumbotron" id="firemancontainer">
+      <img src= <?=Yii::getAlias('@web') ?>"/img/fireman.png">
+        <div class="container text-left">
+          <div class="col-md-6">
+          <h2>Чему учится пожарный?</h2>
+          <p>В приоритете у пожарных не ликвидация возгораний, а спасение людей. При необходимости пожарные оказывают первую медицинскую помощь, а иногда и снимают кошек с деревьев.</p>
+          <p><a class="btn btn-primary btn-lg" role="button">Учиться »</a></p>
+        </div>
+        </div>
+      </div>
+<div class="wrap-front">
+
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-fixed-top',
         ],
     ]);
 
     $menuItems = [
                 ['label' => 'Главная', 'url' => ['/site/index']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
-                ['label' => 'Страницы', 'url' => ['/page/index']],
+                // ['label' => 'Contact', 'url' => ['/site/contact']],
+                // ['label' => 'Страницы', 'url' => ['/page/index']],
             ];
 
 
@@ -85,6 +97,7 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>

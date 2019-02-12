@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\helpers\getLeftMenu;
 
 AppAsset::register($this);
 ?>
@@ -31,7 +32,7 @@ AppAsset::register($this);
     //echo "<pre>";
     //print_r($identity['id']);
     ?>
-<div class="wrap">
+<div class="wrap-admin">
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
@@ -82,11 +83,18 @@ AppAsset::register($this);
 
 
     <div class="container">
+      <div class = "col-md-2">
+        <ul>
+        <?= getLeftMenu::getLinks() ?>
+        </ul>
+      </div>
+      <div class = "col-md-10">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
+      </div>
     </div>
 
 </div>

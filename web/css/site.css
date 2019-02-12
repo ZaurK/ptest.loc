@@ -14,13 +14,37 @@ background-position: center;
     min-height: 100%;
     height: auto;
     margin: 0 auto -60px;
-    padding: 0 0 60px;
+    padding: 70px 0 60px;
 }
 
-.wrap > .container {
-    padding: 70px 15px 20px;
+.wrap-front {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+.wrap-front > nav > .container {
+    /* width: 100%; */
+}
+.wrap-front > .container {
+    /* padding: 70px 15px 20px; */
+    /* width: 100%; */
+}
+
+.wrap-admin {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 70px 0 60px;
+}
+.wrap-admin > nav > .container {
     width: 100%;
 }
+.wrap-admin > .container {
+    /* padding: 70px 15px 20px; */
+    width: 100%;
+}
+
 .wrap-login {
     min-height: 100%;
     height: auto;
@@ -28,8 +52,7 @@ background-position: center;
     padding: 0 0 -100px;
 }
 .wrap > nav > .container {
-
-    width: 100%;
+    /* width: 100%; */
 }
 
 .footer {
@@ -200,3 +223,74 @@ button:hover{
 
 .has-error .help-block {
     color: #ffffff;
+}
+.navbar-inverse {
+    background-color: rgba(255, 204, 0, 0.8);
+    border-color: rgba(255, 204, 0, 0);
+      opacity: 0.8;
+}
+.navbar-inverse1 {
+    background-color: rgba(255, 204, 0, 0);
+    border-color: rgba(255, 204, 0, 0);
+      opacity: 0.4;
+}
+.navbar-inverse1 .navbar-nav > li > a {
+    color: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+#firemancontainer{
+  background: linear-gradient( rgba(255, 204, 0, 0.6), rgba(255, 204, 0, 0.6) ), url('/../img/smoke.png') center center; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-position: 50% 50%;
+  overflow: hidden;
+  /* background-color: rgba(255, 204, 0, 0.9); */
+  margin-top:50px;
+  color:#fff;
+  position: relative;
+}
+#firemancontainer div{
+  background: rgba(0,0,0,0);
+}
+#firemancontainer img {
+  position: absolute;
+  top:0px;
+  bottom: -35px;
+  right: 250px;
+  z-index: 2;
+}
+#firemancontainer h2 {
+  margin: 0;
+}
+#firemancontainer p {
+  position: relative;
+  line-height: 1.5;
+  margin: 1rem;
+  z-index: 3;
+}
+@media all and (max-width: 1200px) {
+  #firemancontainer {
+    background-size: contain;
+  }
+#firemancontainer img {
+    position: absolute;
+    display: block;
+    width: 40%;
+      right: 20px;
+  }
+@media all and (max-width: 725px) {
+  #firemancontainer img {
+      position: absolute;
+      display: block;
+      width: 40%;
+        right: 20px;
+    }
+@media all and (max-width: 725px) {
+      #firemancontainer img {
+          display: none;
+        }

@@ -85,26 +85,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-      $this->layout = 'login';
-
-      if (!Yii::$app->user->isGuest) {
-          return $this->goHome();
-      }
-
-      $model = new LoginForm();
-      if ($model->load(Yii::$app->request->post()) && ($model->loginAdmin() || $model->login())) {
-          //return $this->goBack();
-          if ((Yii::$app->user->getIdentity())['role'] == '20') {
-                  return $this->redirect(['user/index']);
-              } else {
-                  return $this->redirect(['account/index']);
-              }
-      }
-
-      $model->password = '';
-      return $this->render('login', [
-          'model' => $model,
-      ]);
+      $this->layout = 'front';
+      return $this->render('index');
     }
 
 
