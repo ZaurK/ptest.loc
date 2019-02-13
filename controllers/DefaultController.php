@@ -42,7 +42,7 @@ class DefaultController extends \yii\web\Controller
            'class' => 'vova07\imperavi\actions\GetFilesAction',
            'url' => 'http://localhost:8080/files/', // Directory URL address, where files are stored.
            'path' => '@app/web/files', // Or absolute path to directory where files are stored.
-           'options' => ['only' => ['*.pdf', '*.doc', '*.docx', '*.xls', '*.xlsx', '*.txt', '*.md']], // These options are by default.
+           'options' => ['only' => ['*.pdf', '*.pptx', '*.zip', '*.doc', '*.docx', '*.xls', '*.xlsx', '*.txt', '*.md']], // These options are by default.
        ],
 
     ];
