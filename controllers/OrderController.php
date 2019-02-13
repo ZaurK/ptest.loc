@@ -16,6 +16,7 @@ use app\models\User;
  */
 class OrderController extends Controller
 {
+    public $layout = 'admin';
     /**
      * {@inheritdoc}
      */

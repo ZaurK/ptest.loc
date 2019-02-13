@@ -16,6 +16,9 @@ use app\models\User;
  */
 class QuizController extends Controller
 {
+
+    public $layout = 'admin';
+    
     /**
      * {@inheritdoc}
      */

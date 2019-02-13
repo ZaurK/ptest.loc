@@ -16,6 +16,9 @@ use app\models\SignupForm;
  */
 class UserController extends Controller
 {
+
+    public $layout = 'admin';
+    
     /**
      * {@inheritdoc}
      */

@@ -10,6 +10,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\helpers\getLeftMenu;
+use yii\widgets\Menu;
 
 AppAsset::register($this);
 ?>
@@ -44,16 +45,15 @@ AppAsset::register($this);
 
     $menuItems = [
                 ['label' => 'Главная', 'url' => ['/site/index']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
-                ['label' => 'Страницы', 'url' => ['/page/index']],
+                // ['label' => 'Contact', 'url' => ['/site/contact']],
             ];
 
 
     if ((Yii::$app->user->getIdentity())['role'] == '20') {
-                $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
-                $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
-                $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
-                $menuItems[] = ['label' => 'Результаты', 'url' => ['/result/index']];
+                // $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
+                // $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
+                // $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
+                // $menuItems[] = ['label' => 'Результаты', 'url' => ['/result/index']];
                 // $menuItems[] = ['label' => 'Аккаунт', 'url' => ['/account/index']];
             }
     else if ((Yii::$app->user->getIdentity())['role'] == '10') {
@@ -84,9 +84,23 @@ AppAsset::register($this);
 
     <div class="container">
       <div class = "col-md-2">
-        <ul>
-        <?= getLeftMenu::getLinks() ?>
-        </ul>
+      <?php
+      if ((Yii::$app->user->getIdentity())['role'] == '20') {
+      echo Menu::widget([
+      'items' => [
+        ['label' => 'Главная', 'url' => ['site/index']],
+        ['label' => 'Новости', 'url' => ['news/index']],
+        ['label' => 'Страницы', 'url' => ['page/index']],
+        ['label' => 'Тесты', 'url' => ['quiz/index']],
+        ['label' => 'Пользователи', 'url' => ['user/index']],
+        ['label' => 'Задания', 'url' => ['order/index']],
+        ['label' => 'Результаты', 'url' => ['result/index']],
+        ],
+      ]);
+      }
+
+      ?>
+
       </div>
       <div class = "col-md-10">
         <?= Breadcrumbs::widget([

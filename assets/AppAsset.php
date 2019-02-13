@@ -20,9 +20,12 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/menu.css',
+        'css/firebanner.css',
         'css/site.css',
     ];
     public $js = [
+        'js/menu.js',
 
     ];
     public $depends = [

@@ -2,6 +2,9 @@ html,
 body {
     height: 100%;
 }
+* {
+  box-sizing: border-box;
+}
 .fonimg{
 background: linear-gradient( rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.9) ), url('/../img/frontimg.jpg') center center;
 background-repeat: no-repeat;
@@ -224,11 +227,11 @@ button:hover{
 .has-error .help-block {
     color: #ffffff;
 }
-.navbar-inverse {
+/* .navbar-inverse {
     background-color: rgba(255, 204, 0, 0.8);
     border-color: rgba(255, 204, 0, 0);
       opacity: 0.8;
-}
+} */
 .navbar-inverse1 {
     background-color: rgba(255, 204, 0, 0);
     border-color: rgba(255, 204, 0, 0);
@@ -238,59 +241,8 @@ button:hover{
     color: #000;
 }
 
-* {
-  box-sizing: border-box;
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
 }
-#firemancontainer{
-  background: linear-gradient( rgba(255, 204, 0, 0.6), rgba(255, 204, 0, 0.6) ), url('/../img/smoke.png') center center; */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  background-position: 50% 50%;
-  overflow: hidden;
-  /* background-color: rgba(255, 204, 0, 0.9); */
-  margin-top:50px;
-  color:#fff;
-  position: relative;
-}
-#firemancontainer div{
-  background: rgba(0,0,0,0);
-}
-#firemancontainer img {
-  position: absolute;
-  top:0px;
-  bottom: -35px;
-  right: 250px;
-  z-index: 2;
-}
-#firemancontainer h2 {
-  margin: 0;
-}
-#firemancontainer p {
-  position: relative;
-  line-height: 1.5;
-  margin: 1rem;
-  z-index: 3;
-}
-@media all and (max-width: 1200px) {
-  #firemancontainer {
-    background-size: contain;
-  }
-#firemancontainer img {
-    position: absolute;
-    display: block;
-    width: 40%;
-      right: 20px;
-  }
-@media all and (max-width: 725px) {
-  #firemancontainer img {
-      position: absolute;
-      display: block;
-      width: 40%;
-        right: 20px;
-    }
-@media all and (max-width: 725px) {
-      #firemancontainer img {
-          display: none;
-        }

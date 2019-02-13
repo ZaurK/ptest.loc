@@ -56,18 +56,19 @@ AppAsset::register($this);
     $menuItems = [
                 ['label' => 'Главная', 'url' => ['/site/index']],
                 // ['label' => 'Contact', 'url' => ['/site/contact']],
-                // ['label' => 'Страницы', 'url' => ['/page/index']],
+
             ];
 
 
-    if ((Yii::$app->user->getIdentity())['role'] == '20') {
-                $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
-                $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
-                $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
-                $menuItems[] = ['label' => 'Результаты', 'url' => ['/result/index']];
-                // $menuItems[] = ['label' => 'Аккаунт', 'url' => ['/account/index']];
-            }
-    else if ((Yii::$app->user->getIdentity())['role'] == '10') {
+    // if ((Yii::$app->user->getIdentity())['role'] == '20') {
+    //             $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
+    //             $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
+    //             $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
+    //             $menuItems[] = ['label' => 'Результаты', 'url' => ['/result/index']];
+    //             // $menuItems[] = ['label' => 'Аккаунт', 'url' => ['/account/index']];
+    //         }
+    // else
+    if ((Yii::$app->user->getIdentity())['role'] == '10') {
                 // $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
                 // $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
                 // $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
@@ -99,7 +100,71 @@ AppAsset::register($this);
         ]) ?>
 
         <?= Alert::widget() ?>
-        <?= $content ?>
+
+        <div class="col-md-9">
+            <?= $content ?>
+        </div>
+        <div class="col-md-3">
+
+  <div class="accordion js-accordion">
+  <div class="accordion__item js-accordion-item">
+    <div class="accordion-header js-accordion-header">Panel 1</div>
+  <div class="accordion-body js-accordion-body">
+
+      <div class="accordion js-accordion">
+        <div class="accordion__item js-accordion-item">
+           <div class="accordion-header js-accordion-header">Sub Panel 1</div>
+
+        </div><!-- end of sub accordion item -->
+        <div class="accordion__item js-accordion-item">
+           <div class="accordion-header js-accordion-header">Sub Panel 2</div>
+
+        </div><!-- end of sub accordion item -->
+      </div><!-- end of sub accordion -->
+    </div
+    </div><!-- end of accordion body -->
+  </div><!-- end of accordion item -->
+  <div class="accordion__item js-accordion-item ">
+    <div class="accordion-header js-accordion-header">Panel 2</div>
+  <div class="accordion-body js-accordion-body">
+
+      <div class="accordion js-accordion">
+        <div class="accordion__item js-accordion-item">
+           <div class="accordion-header js-accordion-header">Sub Panel 1</div>
+
+        </div><!-- end of sub accordion item -->
+        <div class="accordion__item js-accordion-item">
+           <div class="accordion-header js-accordion-header">Sub Panel 2</div>
+
+        </div><!-- end of sub accordion item -->
+      </div><!-- end of sub accordion -->
+    </div><!-- end of accordion body -->
+  </div><!-- end of accordion item -->
+    <div class="accordion__item js-accordion-item">
+    <div class="accordion-header js-accordion-header">Panel 3</div>
+  <div class="accordion-body js-accordion-body">
+
+      <div class="accordion js-accordion">
+        <div class="accordion__item js-accordion-item">
+           <div class="accordion-header js-accordion-header">Sub Panel 1</div>
+
+        </div><!-- end of sub accordion item -->
+        <div class="accordion__item js-accordion-item">
+           <div class="accordion-header js-accordion-header">Sub Panel 2</div>
+
+        </div><!-- end of sub accordion item -->
+      </div><!-- end of sub accordion -->
+    </div><!-- end of accordion body -->
+  </div><!-- end of accordion item -->
+     <div class="accordion__item js-accordion-item">
+    <div class="accordion-header js-accordion-header">Panel 4</div>
+
+  </div><!-- end of accordion item -->
+
+
+</div><!-- end of accordion -->
+
+        </div>
     </div>
 
 </div>
