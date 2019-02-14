@@ -20,10 +20,12 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+
 <body>
 <?php $this->beginBody() ?>
 <?php $this->registerJsFile('/js/parallax.js', ['depends' => [\yii\web\JqueryAsset::className()]]); ?>
@@ -55,20 +57,19 @@ AppAsset::register($this);
 
     $menuItems = [
                 ['label' => 'Главная', 'url' => ['/site/index']],
-                // ['label' => 'Contact', 'url' => ['/site/contact']],
 
             ];
 
 
-    // if ((Yii::$app->user->getIdentity())['role'] == '20') {
+    if ((Yii::$app->user->getIdentity())['role'] == '20') {
+                  $menuItems[] = ['label' => 'Админка', 'url' => ['/news/index']];
     //             $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
     //             $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
     //             $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];
     //             $menuItems[] = ['label' => 'Результаты', 'url' => ['/result/index']];
     //             // $menuItems[] = ['label' => 'Аккаунт', 'url' => ['/account/index']];
-    //         }
-    // else
-    if ((Yii::$app->user->getIdentity())['role'] == '10') {
+            }
+    else if ((Yii::$app->user->getIdentity())['role'] == '10') {
                 // $menuItems[] = ['label' => 'Тесты', 'url' => ['/quiz/index']];
                 // $menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/index']];
                 // $menuItems[] = ['label' => 'Задания', 'url' => ['/order/index']];

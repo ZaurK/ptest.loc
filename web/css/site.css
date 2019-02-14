@@ -224,9 +224,6 @@ button:hover{
   color:green;
 }
 
-.has-error .help-block {
-    color: #ffffff;
-}
 /* .navbar-inverse {
     background-color: rgba(255, 204, 0, 0.8);
     border-color: rgba(255, 204, 0, 0);

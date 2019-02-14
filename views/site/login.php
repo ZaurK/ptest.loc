@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php ActiveForm::end(); ?>
 
-    <div style="color:#fff;">
+    <div>
         Вы можете авторизоваться, <strong>предварительно</strong> получив <br>
         логин и пароль у администратора.<br>
     </div>
