@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\StringHelper;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "news".
@@ -46,4 +48,26 @@ class News extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
         ];
     }
+
+   /**
+    * {@inheritdoc}
+    */
+    public static function getNews()
+    {
+      // $news = new News();
+      $rows = News::find()
+                       ->orderBy(['created_at'=> SORT_DESC])
+                       ->limit(3)
+                       ->all();
+
+      foreach ($rows as $row){
+         $content = StringHelper::truncateWords($row['new_content'], 50, '...');
+         echo '<div class="col-md-12"><h2><a href="'.Url::toRoute(["site/new", "id" => $row["id"]]).'">'.$row["new_title"].'</a></h2><p>'.$row["created_at"].'</p><p>'.$content.'</p><br></div>';
+         echo '<div class="col-md-12"><p><a class="btn btn-default" href="'.Url::toRoute(["site/new", "id" => $row["id"]]).'">Далее &raquo;</a></p><br></div>';
+      }
+    }
+
+
+
+
 }

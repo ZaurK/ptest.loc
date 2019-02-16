@@ -5,6 +5,9 @@ body {
 * {
   box-sizing: border-box;
 }
+.img100 img{
+  width:100%;
+}
 .fonimg{
 background: linear-gradient( rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.9) ), url('/../img/frontimg.jpg') center center;
 background-repeat: no-repeat;
@@ -62,6 +65,7 @@ background-position: center;
     height: 60px;
     border-top: 1px solid #ddd;
     padding-top: 20px;
+    margin-top:26px;
 }
 .footer-login {
     height: 60px;

@@ -10,6 +10,9 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
+use app\models\Service;
+use app\models\News;
+use yii\data\Pagination;
 
 class SiteController extends Controller
 {
@@ -21,7 +24,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup', 'about', 'account'],
+                'only' => ['logout', 'signup', 'account'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -32,14 +35,6 @@ class SiteController extends Controller
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
-                    ],
-                    [
-                        'actions' => ['about'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                            return User::isUserAdmin(Yii::$app->user->identity->username);
-                        },
                     ],
                     [
                         'actions' => ['account'],
@@ -149,7 +144,43 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * Lists all news page.
+     * @return mixed
+     */
+     public function actionNewsall()
+     {
+       $this->layout = 'inner';
+       // // $news = new News();
+       // $news_row = $news->getNewsAll();
+       // return $this->render('newall', ['news_row' => $news_row]);
 
+       $query = News::find();
+       $countQuery = clone $query;
+       $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize'=>2]);
+       $models = $query->offset($pages->offset)
+        ->limit($pages->limit)
+        ->all();
+
+    return $this->render('newall', [
+         'models' => $models,
+         'pages' => $pages,
+    ]);
+     }
+
+     /**
+      * Lists all news page.
+      * @return mixed
+      */
+      public function actionNew($id)
+      {
+
+        $this->layout = 'inner';
+        if (($model_new = News::findOne($id)) !== null) {
+            return $this->render('newview', ['model_new' => $model_new]);
+        }
+
+      }
 
 
 

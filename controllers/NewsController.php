@@ -16,7 +16,7 @@ class NewsController extends Controller
 {
 
     public $layout = 'admin';
-    
+
     /**
      * {@inheritdoc}
      */
@@ -31,6 +31,7 @@ class NewsController extends Controller
             ],
         ];
     }
+
 
     /**
      * Lists all News models.

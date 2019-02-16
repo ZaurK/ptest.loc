@@ -28,21 +28,16 @@ AppAsset::register($this);
 
 <body>
 <?php $this->beginBody() ?>
-<?php $this->registerJsFile('/js/parallax.js', ['depends' => [\yii\web\JqueryAsset::className()]]); ?>
+
   <?php
     $identity = Yii::$app->user->getIdentity();
     //echo "<pre>";
     //print_r($identity['id']);
     ?>
     <div class="jumbotron" id="firemancontainer">
-      <img src= <?=Yii::getAlias('@web') ?>"/img/fireman.png">
-        <div class="container text-left">
           <div class="col-md-6">
-          <h2>Чему учится пожарный?</h2>
-          <p>В приоритете у пожарных не ликвидация возгораний, а спасение людей. При необходимости пожарные оказывают первую медицинскую помощь, а иногда и снимают кошек с деревьев.</p>
-          <p><a class="btn btn-primary btn-lg" role="button">Учиться »</a></p>
-        </div>
-        </div>
+              <h2><?= Html::encode($this->title) ?></h2>
+          </div>
       </div>
 <div class="wrap-front">
 
