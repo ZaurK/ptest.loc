@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'page_title',
             'page_content:ntext',
             'page_num',
+            'access',
         ],
     ]) ?>
 

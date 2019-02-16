@@ -20,18 +20,30 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Создать новую', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+            // 'id',
             // 'id_parent',
             'page_title',
+            'parent.page_title',
            [
                'attribute'=>'page.page_title',
                'label'=>'Родитель',
+           ],
+       [
+           'attribute'=>'id_parent',
+           'label'=>'Родительская категория',
+
+       ],
+           [
+             'attribute' => 'access',
+             'label'=>'Доступ',
+             'filter'=>array("0"=>"Видно всем", "1"=>"Только админ", "2"=>"Только студент"),
            ],
 
             //'page_content:ntext',

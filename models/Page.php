@@ -29,7 +29,7 @@ class Page extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_parent', 'page_num'], 'integer'],
+            [['id_parent', 'page_num', 'access'], 'integer'],
             [['page_title'], 'required'],
             [['page_content'], 'string'],
             [['page_title'], 'string', 'max' => 255],
@@ -49,6 +49,7 @@ class Page extends \yii\db\ActiveRecord
             'page_title' => 'Заголовок',
             'page_content' => 'Контент',
             'page_num' => 'Порядок',
+            'access' => 'Доступ',
         ];
     }
 
@@ -60,4 +61,9 @@ class Page extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Page::className(), ['id' => 'id_parent']);
     }
+
+  
+
+
+
 }

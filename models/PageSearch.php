@@ -17,7 +17,7 @@ class PageSearch extends Page
     public function rules()
     {
         return [
-            [['id', 'id_parent', 'page_num'], 'integer'],
+            [['id', 'id_parent', 'page_num', 'access'], 'integer'],
             [['page_title', 'page_content'], 'safe'],
         ];
     }
@@ -60,11 +60,15 @@ class PageSearch extends Page
         $query->andFilterWhere([
             'id' => $this->id,
             'id_parent' => $this->id_parent,
+            // 'page_title' => $this->page_title,
             'page_num' => $this->page_num,
+            'access' => $this->access,
         ]);
 
         $query->andFilterWhere(['like', 'page_title', $this->page_title])
-            ->andFilterWhere(['like', 'page_content', $this->page_content]);
+            ->andFilterWhere(['like', 'page_content', $this->page_content])
+            ->andFilterWhere(['like', 'id_parent', $this->id_parent])
+            ->andFilterWhere(['like', 'access', $this->access]);
 
         return $dataProvider;
     }

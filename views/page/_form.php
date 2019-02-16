@@ -55,7 +55,14 @@ use app\models\Page;
     ]);
     ?>
 
-    <?= $form->field($model, 'page_num')->textInput() ?>
+    <?= $form->field($model, 'access')->dropDownList([
+    '0' => 'Видно всем',
+    '1' => 'Только админ',
+    '2'=>'Только студент'
+  ], ['class' => 'fieldwidth'])
+    ?>
+
+    <?= $form->field($model, 'page_num')->textInput(['class' => 'fieldwidth']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

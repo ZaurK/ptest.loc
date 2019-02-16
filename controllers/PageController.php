@@ -41,6 +41,7 @@ class PageController extends Controller
     {
         $searchModel = new PageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $page = new Page();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
