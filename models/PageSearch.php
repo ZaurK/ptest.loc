@@ -17,8 +17,8 @@ class PageSearch extends Page
     public function rules()
     {
         return [
-            [['id', 'id_parent', 'page_num', 'access'], 'integer'],
-            [['page_title', 'page_content'], 'safe'],
+            [['id',  'page_num', 'access'], 'integer'],
+            [['page_title', 'id_parent', 'page_content'], 'safe'],
         ];
     }
 
@@ -56,18 +56,19 @@ class PageSearch extends Page
             return $dataProvider;
         }
 
+        // $query->joinWith('pageBond');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_parent' => $this->id_parent,
+            // 'id_parent' => $this->id_parent,
             // 'page_title' => $this->page_title,
             'page_num' => $this->page_num,
             'access' => $this->access,
         ]);
 
         $query->andFilterWhere(['like', 'page_title', $this->page_title])
-            ->andFilterWhere(['like', 'page_content', $this->page_content])
-            ->andFilterWhere(['like', 'id_parent', $this->id_parent])
+            ->andFilterWhere(['like', 'page.page_title', $this->id_parent])
             ->andFilterWhere(['like', 'access', $this->access]);
 
         return $dataProvider;

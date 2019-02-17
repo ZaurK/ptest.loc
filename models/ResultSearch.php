@@ -17,8 +17,8 @@ class ResultSearch extends Result
     public function rules()
     {
         return [
-            [['id',  'id_quiz'], 'integer'],
-            [['result', 'id_user'], 'safe'],
+            [['id'], 'integer'],
+            [['result', 'id_user',  'id_quiz'], 'safe'],
         ];
     }
 
@@ -56,14 +56,19 @@ class ResultSearch extends Result
             return $dataProvider;
         }
 
+        $query->joinWith('quizBond');
+        $query->joinWith('userBond');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_user' => $this->id_user,
-            'id_quiz' => $this->id_quiz,
+            // 'id_user' => $this->id_user,
+            // 'id_quiz' => $this->id_quiz,
         ]);
 
-        $query->andFilterWhere(['like', 'result', $this->result]);
+        $query->andFilterWhere(['like', 'result', $this->result])
+              ->andFilterWhere(['like', 'quiz.quiztitle', $this->id_quiz])
+              ->andFilterWhere(['like', 'user.fio', $this->id_user]);
 
         return $dataProvider;
     }

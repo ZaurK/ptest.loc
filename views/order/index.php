@@ -26,9 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
             'ordertitle',
-            'order_quiz',
+            [
+              'label' => 'Тест',
+              'attribute' => 'order_quiz',
+              'value' => 'quizBond.quiztitle',
+            ],
             //'order_data',
 
 

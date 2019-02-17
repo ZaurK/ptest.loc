@@ -56,14 +56,15 @@ class OrderSearch extends Order
             return $dataProvider;
         }
 
+        $query->joinWith('quizBond');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
         ]);
 
         $query->andFilterWhere(['like', 'ordertitle', $this->ordertitle])
-            ->andFilterWhere(['like', 'order_quiz', $this->order_quiz])
-            ->andFilterWhere(['like', 'order_data', $this->order_data]);
+            ->andFilterWhere(['like', 'quiz.quiztitle', $this->order_quiz]);
 
         return $dataProvider;
     }

@@ -29,13 +29,16 @@ $service = new Service();
 
             //'id',
             [
-              //'header'=>'Ф.И.О.',
+              'label'=>'Ф.И.О.',
               'attribute' => 'id_user',
-              'value' => 'user.fio',
+              'value' => 'userBond.fio',
             ],
 
-            'quiz.quiztitle',
-            'result:ntext',
+            [
+              'label' => 'Тест',
+              'attribute' => 'id_quiz',
+              'value' => 'quizBond.quiztitle',
+            ],
 
 
             [

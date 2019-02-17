@@ -56,4 +56,9 @@ class Order extends \yii\db\ActiveRecord
 
         return $list;
     }
+
+    public function getQuizBond()
+    {
+        return $this->hasOne(Quiz::class,['id' => 'order_quiz']);
+    }
 }

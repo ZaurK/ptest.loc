@@ -30,16 +30,19 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'id',
             // 'id_parent',
             'page_title',
-            'parent.page_title',
-           [
-               'attribute'=>'page.page_title',
-               'label'=>'Родитель',
-           ],
-       [
-           'attribute'=>'id_parent',
-           'label'=>'Родительская категория',
 
-       ],
+           [
+               'label'=>'Родительская категория',
+               'attribute'=>'id_parent',
+               'format'=>'text', // Возможные варианты: raw, html
+               'content'=>function($data){
+                   return $data->getParentName();
+               },
+               'filter' => Page::getParentsList()
+           ],
+
+
+
            [
              'attribute' => 'access',
              'label'=>'Доступ',

@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "page".
  *
@@ -57,12 +57,32 @@ class Page extends \yii\db\ActiveRecord
     /**
     * @return \yii\db\ActiveQuery
     */
-    public function getPage()
+    public function getParent()
     {
         return $this->hasOne(Page::className(), ['id' => 'id_parent']);
     }
 
+    public function getParentName()
+    {
+        $parent = $this->parent;
+        return $parent ? $parent->page_title : '';
+    }
+
+    public static function getParentsList()
+    {
+    // Выбираем только те категории, у которых есть дочерние категории
+    $parents = Page::find()
+        ->select(['p.id', 'p.page_title'])
+        ->join('JOIN', 'page p', 'page.id_parent = p.id')
+        ->distinct(true)
+        ->all();
+
+    return ArrayHelper::map($parents, 'id', 'page_title');
+    }
+
   
+
+
 
 
 

@@ -49,12 +49,12 @@ class Result extends \yii\db\ActiveRecord
     }
 
 
-    public function getQuiz()
+    public function getQuizBond()
     {
         return $this->hasOne(Quiz::class,['id' => 'id_quiz']);
     }
 
-    public function getUser()
+    public function getUserBond()
     {
         return $this->hasOne(User::class,['id' => 'id_user']);
     }
